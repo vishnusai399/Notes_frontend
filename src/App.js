@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/notes');
+        const response = await axios.get('https://personal-notes-backend.onrender.com/api/notes');
         setNotes(response.data);
       } catch (error) {
         console.error('Error fetching notes:', error);
@@ -29,7 +29,7 @@ const App = () => {
   const handleAddNote = async () => {
     try {
       if (newNote.trim() !== '') {
-        const response = await axios.post('http://localhost:5000/api/notes', { text: newNote });
+        const response = await axios.post('https://personal-notes-backend.onrender.com/api/notes', { text: newNote });
         setNotes([...notes, response.data]);
         setNewNote('');
       }
@@ -40,7 +40,7 @@ const App = () => {
 
   const handleDeleteNote = async (index) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${notes[index]._id}`);
+      await axios.delete(`https://personal-notes-backend.onrender.com/api/notes/${notes[index]._id}`);
       const newNotes = [...notes];
       newNotes.splice(index, 1);
       setNotes(newNotes);
@@ -64,7 +64,7 @@ const App = () => {
 
   const handleUpdateNote = async (index) => {
     try {
-      await axios.put(`http://localhost:5000/api/notes/${notes[index]._id}`, { text: editNoteText });
+      await axios.put(`https://personal-notes-backend.onrender.com/api/notes/${notes[index]._id}`, { text: editNoteText });
       const updatedNotes = [...notes];
       updatedNotes[index].text = editNoteText;
       setNotes(updatedNotes);
